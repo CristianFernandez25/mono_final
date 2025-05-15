@@ -1,35 +1,33 @@
-<?php 
-Class Category {
+<?php
+class Category {
     private $id;
     private $name;
     private $percentage;
 
-    public function __construct($id = null, $name = null, $percentage = null) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->percentage = $percentage;
+    // Constructor
+    public function __construct() {
+        // Constructor vacío
     }
 
-   
+    // Getters y setters
     public function getId() {
         return $this->id;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
     }
 
     public function getName() {
         return $this->name;
     }
 
-    public function getPercentage() {
-        return $this->percentage;
-    }
-
-
-    public function setId($id) {
-        $this->id = $id;
-    }
-
     public function setName($name) {
         $this->name = $name;
+    }
+
+    public function getPercentage() {
+        return $this->percentage;
     }
 
     public function setPercentage($percentage) {

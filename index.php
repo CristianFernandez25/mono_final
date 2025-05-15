@@ -37,4 +37,3 @@ if (class_exists($controllerName)) {
     echo "Error: Controlador '$controllerName' no encontrado.";
 }
 ?>
-

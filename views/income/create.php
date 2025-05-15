@@ -13,7 +13,10 @@
             <nav>
                 <ul>
                     <li><a href="index.php?controller=income&action=index">Ingresos</a></li>
-                    <li><a href="index.php?controller=income&action=create" class="active">Registrar Ingreso</a></li>
+                    <li><a href="index.php?controller=income&action=create">Registrar Ingreso</a></li>
+                    <li><a href="index.php?controller=category&action=index">Categorías</a></li>
+                    <li><a href="index.php?controller=Bills&action=index">Gastos</a></li>
+                    <li><a href="index.php?controller=Report&action=index">Reportes</a></li>
                 </ul>
             </nav>
         </header>
