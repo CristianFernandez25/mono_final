@@ -1,4 +1,6 @@
 <?php
+require_once 'models/CreateReportModel.php';
+
 class CategoryController {
     private $categoryModel;
 

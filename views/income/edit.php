@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <header>
+        <header class="header">
             <h1>Control de Gastos Mensuales</h1>
             <nav>
                 <ul>

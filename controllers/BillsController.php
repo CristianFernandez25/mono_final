@@ -16,12 +16,24 @@ class BillsController {
     
     // Mostrar el formulario para crear un nuevo gasto
     public function create() {
-        $categories = $this->categoryModel->getAllCategories();
+        // Obtener los objetos Category del modelo
+        $categoriesObjects = $this->categoryModel->getAllCategories();
+        
+        // Convertir los objetos a un formato array asociativo para la vista
+        $categories = [];
+        foreach ($categoriesObjects as $category) {
+            $categories[] = [
+                'id' => $category->getId(),
+                'name' => $category->getName(),
+                'percentage' => $category->getPercentage()
+            ];
+        }
+        
         $reports = $this->billModel->getAllReports();
         $months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         $currentYear = date('Y');
         $years = range($currentYear - 2, $currentYear + 2);
-        
+
         require_once 'views/bills/create.php';
     }
     
@@ -95,7 +107,19 @@ class BillsController {
             exit;
         }
         
-        $categories = $this->categoryModel->getAllCategories();
+        // Obtener los objetos Category del modelo
+        $categoriesObjects = $this->categoryModel->getAllCategories();
+        
+        // Convertir los objetos a un formato array asociativo para la vista
+        $categories = [];
+        foreach ($categoriesObjects as $category) {
+            $categories[] = [
+                'id' => $category->getId(),
+                'name' => $category->getName(),
+                'percentage' => $category->getPercentage()
+            ];
+        }
+        
         require_once 'views/bills/edit.php';
     }
     
@@ -168,3 +192,4 @@ class BillsController {
         }
     }
 }
+?>

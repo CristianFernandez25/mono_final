@@ -1,9 +1,16 @@
 <?php
 require_once 'drivers/db.php';
 require_once 'entities/Reports.php';
+require_once 'models/entities/Income.php';
+require_once 'models/entities/Bills.php';
+require_once 'models/entities/Category.php';
 
 class ReportModel {
     private $connection;
+    private $reportEntity;
+    private $incomeEntity;
+    private $billEntity;
+    private $categoryEntity;
 
     public function __construct() {
         $db = new db();
