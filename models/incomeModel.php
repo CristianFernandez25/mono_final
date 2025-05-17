@@ -43,5 +43,7 @@ class IncomeModel {
         
         return $stmt->execute();
     }
+
+    
 }
 ?>

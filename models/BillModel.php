@@ -117,7 +117,7 @@ class BillModel {
     }
     
     // Obtener ID de un reporte por mes y año
-    private function getReportId($month, $year) {
+    public function getReportId($month, $year) {
         try {
             $query = "SELECT id FROM reports WHERE month = :month AND year = :year";
             $stmt = $this->connection->prepare($query);
@@ -132,7 +132,7 @@ class BillModel {
     }
     
     // Crear un nuevo reporte
-    private function createReport($month, $year) {
+    public function createReport($month, $year) {
         try {
             $query = "INSERT INTO reports (month, year) VALUES (:month, :year)";
             $stmt = $this->connection->prepare($query);

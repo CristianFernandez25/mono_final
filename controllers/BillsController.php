@@ -2,10 +2,12 @@
 class BillsController {
     private $billModel;
     private $categoryModel;
+    private $incomeModel; // Añadir el modelo de ingresos
     
     public function __construct() {
         $this->billModel = new BillModel();
         $this->categoryModel = new CategoryModel();
+        $this->incomeModel = new IncomeModel(); // Instanciar el modelo de ingresos
     }
     
     // Mostrar la lista de gastos
@@ -67,7 +69,19 @@ class BillsController {
             }
             
             // Verificar si existe un ingreso para este mes y año
-            $income = $this->billModel->getBillsByMonthYear($month, $year);
+            $reportId = $this->billModel->getReportId($month, $year);
+            if (!$reportId) {
+                // Si no existe un reporte para este mes y año, lo creamos
+                $reportId = $this->billModel->createReport($month, $year);
+                if (!$reportId) {
+                    $_SESSION['error'] = "Error al crear el reporte para {$month} de {$year}.";
+                    header('Location: index.php?controller=bills&action=create');
+                    exit;
+                }
+            }
+            
+            // Verificar si existe un ingreso para este mes y año usando el modelo de ingresos
+            $income = $this->incomeModel->getIncomeByReportId($reportId);
             if (!$income) {
                 $_SESSION['error'] = "No existe un ingreso registrado para {$month} de {$year}. Debe registrar primero el ingreso.";
                 header('Location: index.php?controller=bills&action=create');

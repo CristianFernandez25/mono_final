@@ -1,5 +1,5 @@
 <?php
-require_once 'models/CreateReportModel.php';
+require_once 'models/ReportModel.php';
 
 class CategoryController {
     private $categoryModel;
