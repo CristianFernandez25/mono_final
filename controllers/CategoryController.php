@@ -45,6 +45,16 @@ class CategoryController {
             return;
         }
 
+        // Validar que el nombre no contenga caracteres especiales
+        if (!preg_match('/^[a-zA-Z0-9\s]+$/', $name)) {
+            $_SESSION['message'] = [
+                'type' => 'danger',
+                'text' => 'El nombre de la categoría no permite caracteres especiales.'
+            ];
+            header('Location: index.php?controller=Category&action=create');
+            return;
+        }
+
         // Validar que el porcentaje sea mayor que cero y no supere el 100%
         if (floatval($percentage) <= 0 || floatval($percentage) > 100) {
             $_SESSION['message'] = [
@@ -86,7 +96,7 @@ class CategoryController {
 
         $categoryId = $_GET['id'];
         $category = $this->categoryModel->getCategoryById($categoryId);
-        
+
         if (!$category) {
             $_SESSION['message'] = [
                 'type' => 'danger',
@@ -95,10 +105,10 @@ class CategoryController {
             header('Location: index.php?controller=Category&action=index');
             return;
         }
-        
+
         // Verificar si la categoría está siendo utilizada
         $isInUse = $this->categoryModel->isCategoryInUse($categoryId);
-        
+
         require_once 'views/categories/edit.php';
     }
 
@@ -127,6 +137,16 @@ class CategoryController {
             return;
         }
 
+        // Validar que el nombre no contenga caracteres especiales
+        if (!preg_match('/^[a-zA-Z0-9\s]+$/', $name)) {
+            $_SESSION['message'] = [
+                'type' => 'danger',
+                'text' => 'El nombre de la categoría no permite caracteres especiales.'
+            ];
+            header("Location: index.php?controller=Category&action=edit&id=$categoryId");
+            return;
+        }
+
         // Validar que el porcentaje sea mayor que cero y no supere el 100%
         if (floatval($percentage) <= 0 || floatval($percentage) > 100) {
             $_SESSION['message'] = [
@@ -139,7 +159,7 @@ class CategoryController {
 
         // Verificar si la categoría está siendo utilizada
         $isInUse = $this->categoryModel->isCategoryInUse($categoryId);
-        
+
         if ($isInUse) {
             $_SESSION['message'] = [
                 'type' => 'danger',
@@ -179,10 +199,10 @@ class CategoryController {
         }
 
         $categoryId = $_GET['id'];
-        
+
         // Verificar si la categoría está siendo utilizada
         $isInUse = $this->categoryModel->isCategoryInUse($categoryId);
-        
+
         if ($isInUse) {
             $_SESSION['message'] = [
                 'type' => 'danger',
@@ -191,7 +211,7 @@ class CategoryController {
             header('Location: index.php?controller=Category&action=index');
             return;
         }
-        
+
         // Eliminar la categoría
         $success = $this->categoryModel->deleteCategory($categoryId);
 
