@@ -12,7 +12,6 @@ class CategoryController {
     public function index() {
         $categories = $this->categoryModel->getAllCategories();
         require_once 'views/categories/index.php';
-        include 'views/income/index.php';
     }
 
     // Método para mostrar el formulario de creación
