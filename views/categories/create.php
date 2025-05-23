@@ -39,7 +39,7 @@
                 <form action="index.php?controller=Category&action=store" method="POST" class="form">
                     <div class="form-group">
                         <label for="name">Nombre:</label>
-                        <input type="text" name="name" id="name" required>
+                        <input type="text" name="name" id="name" required pattern="[A-Za-z\s]+" title="Solo letras y espacios permitidos">
                         <small>no se permiten caracteres especiales</small>
 
                     </div>
